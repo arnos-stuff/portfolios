@@ -7,6 +7,8 @@ import plotly.express as px
 # Long only portfolio optimization.
 import cvxpy as cp
 
+from pathlib import Path
+
 from .progression import Pbar, console
 
 __all__ = ["init_portfolios", "compute_tradeoff_curve", "experiment"]
@@ -14,11 +16,11 @@ __all__ = ["init_portfolios", "compute_tradeoff_curve", "experiment"]
 np.random.seed(1)
 
 
-def init_portfolios(num_assets: int = 10):
+def init_portfolios(num_assets: int = 10, reg : float = 1e-8):
     mu = np.abs(np.random.randn(num_assets, 1))
     Sigma = np.random.randn(num_assets, num_assets)
-    Sigma = Sigma.T.dot(Sigma)
-
+    Sigma = Sigma.T.dot(Sigma) + np.eye(num_assets)
+    Sigma = cp.psd_wrap(Sigma)
     w = cp.Variable(num_assets)
     gamma = cp.Parameter(nonneg=True)
     ret = mu.T @ w
@@ -44,7 +46,7 @@ def compute_tradeoff_curve(
     with Pbar as progress:
         task = progress.add_task("Computing trade-off curve...", total=gamma_samples)
         for i in range(gamma_samples):
-            progress.update(task, description=f"Computing trade-off curve for ɣ = {gamma_vals[i]}")
+            progress.update(task, description=f"Computing trade-off curve for ɣ = {np.round(gamma_vals[i], int(abs(gamma_lower))) }")
             gamma.value = gamma_vals[i]
             prob.solve()
             risk_data[i] = cp.sqrt(risk).value
@@ -103,7 +105,10 @@ def experiment(gamma_lower: float = -4, gamma_upper: float = 4, gamma_samples: i
     mu, Sigma, w, gamma, ret, risk, prob = init_portfolios(
         num_assets=gamma_samples
     )
-    return compute_tradeoff_curve(mu, Sigma, w, gamma, ret, risk, prob)
+    return compute_tradeoff_curve(
+        mu, Sigma, w, gamma, ret, risk, prob,
+        gamma_lower, gamma_upper, gamma_samples
+        )
     
     
 if __name__ == '__main__':
