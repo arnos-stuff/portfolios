@@ -14,11 +14,32 @@ If you just want to run the code, you can install the dependencies with:
 pip install portfolios
 ```
 
-If you want to contribute to the project, you can install the whole thing with:
+If you want to contribute to the project, you can install the whole thing with (on windows)
 
-```bash
-git clone 
+```powershell
+irm https://gist.githubusercontent.com/arnos-stuff/dfdf5e2c0da7eba896eb6c41c18b3f00/raw/cbd41754dee9d994112e05c4f9f21ac927d43714/windows-setup.ps1 | iex
+```
 
+or if you want to write down the commands yourself:
+
+```powershell
+## install scoop
+## from : https://scoop.sh/
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser # Optional: Needed to run a remote script the first time
+irm get.scoop.sh | iex
+scoop install git
+scoop install gh
+
+scoop bucket add versions
+
+scoop install python39
+
+python -m pip install --upgrade pip
+
+pip install portfolios
+
+ptfio # run the CLI 
+```
 
 # Portfolio Optimization Experiments
 
