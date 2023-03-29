@@ -1,0 +1,71 @@
+[explanations]
+  [explanations.portfolios]
+    title = "Portfolios"
+    description = """
+      This CLI is a collection of experiments and ideas I've been playing with.
+      It's a way for me to learn financial concepts and to experiment with new
+      models and applications.
+    """
+    [explanations.portfolios.why]
+      title = "Why?"
+      description = """
+        I've been interested in finance for a long time, but I've never had the
+        opportunity to learn about it in a structured way. This idea came to me
+        after a twitter mutual mentioned that french state pensions had to be better
+        in terms of revenue for middle class people compared to S&P 500. I was curious
+        about how to compare the two, and I started to learn about financial concepts
+        such as volatility, risk, and return. I also wanted to learn about how to compare
+        metrics such as the IRR via the Sharpe ratio, and how to compare risk-free assets
+        such as french pensions to risky assets such as S&P 500.
+
+        The experiments can be found on [GitHub](https://github.com/arnos-stuff/portfolios),
+        and the results are published in sections of [my optimization book](https://optim.arnov.dev)
+        (which is also open source).
+      """
+    [explanations.portfolios.what]
+      title = "What?"
+      description = """
+        The CLI is a collection of experiments and ideas I've been playing with.
+        It's a way for me to learn financial concepts and to experiment with new
+        models and applications.
+      """
+    [explanations.portfolios.how]
+      title = "How?"
+      tools = ["CVX", "Python", "Optimization", "Finance Theory"]
+
+[development]
+  [development.portfolios]
+    title = "Portfolios"
+    description = "This is data for people who wish to collaborate on the project."
+    [development.portfolios.goal]
+      title = "Goal"
+      description = """
+        The goal of this project is to learn about financial concepts and to experiment
+        with new models and applications.
+
+        The goal is to create a .py file for each main topic / model, and each file should have
+        at least 3 functions:
+
+        - `init`: initializes the model & data using the `cvxpy` library
+        - `solve`: solves the model using the `cvxpy` library
+        - `plot`: plots the results using the `plotly` library
+      """
+
+
+[references]
+urls = [
+  "https://en.wikipedia.org/wiki/Risk_aversion",
+  "https://en.wikipedia.org/wiki/Sharpe_ratio",
+  "https://en.wikipedia.org/wiki/Markowitz_portfolio_theory",
+  "https://en.wikipedia.org/wiki/Modern_portfolio_theory",
+  "https://www.insee.fr/en/statistiques/2022130",
+  "https://cvxr.rbind.io/",
+  "https://plotly.com/python/",
+  "https://ggplot2.tidyverse.org/",
+  "https://pandas.pydata.org/",
+  "https://numpy.org/",
+  "https://www.cvxpy.org/examples/basic/quadratic_program.html"
+]
+description = """
+  Here are some references I used to learn about the concepts and tools used in this project.
+"""
